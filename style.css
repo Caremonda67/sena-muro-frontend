@@ -666,11 +666,13 @@ textarea {
 
 /* Imagen adjunta en el mensaje */
 .mensaje-img-wrapper {
+  position: relative;
   margin: 0.6rem 0 0.8rem;
   border-radius: var(--radius-md);
   overflow: hidden;
   max-height: 320px;
   border: 1px solid var(--border-color);
+  cursor: pointer;
 }
 
 .mensaje-img {
@@ -680,10 +682,37 @@ textarea {
   object-fit: cover;
   display: block;
   transition: transform 0.3s ease;
+  cursor: pointer;
 }
 
 .mensaje-img:hover {
   transform: scale(1.02);
+}
+
+.img-zoom-badge {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  background: rgba(15, 23, 42, 0.75);
+  color: #ffffff;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.25rem 0.6rem;
+  border-radius: 9999px;
+  backdrop-filter: blur(4px);
+  opacity: 0.9;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
+  pointer-events: none;
+}
+
+.mensaje-img-wrapper:hover .img-zoom-badge {
+  background: var(--primary);
+  transform: scale(1.05);
+  opacity: 1;
 }
 
 /* Pie de la tarjeta: Botones de Acción (Eliminar y Likes) */
@@ -969,6 +998,39 @@ textarea {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+/* ================= MODAL VISOR DE IMAGEN (LIGHTBOX) ================= */
+.visor-modal-card {
+  max-width: 850px;
+  width: 95%;
+  max-height: 92vh;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.visor-imagen-container {
+  width: 100%;
+  max-height: 72vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.05);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 0.5rem;
+  overflow: auto;
+  margin: 0.8rem 0;
+}
+
+.visor-img-full {
+  max-width: 100%;
+  max-height: 68vh;
+  object-fit: contain;
+  border-radius: var(--radius-sm);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s ease;
 }
 
 /* ================= Footer ================= */

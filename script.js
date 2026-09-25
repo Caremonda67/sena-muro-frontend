@@ -338,6 +338,46 @@ btnCopiarLink.addEventListener('click', () => {
 });
 
 // ====================================================================
+// MODAL DE VISOR DE IMAGEN (Lightbox)
+// ====================================================================
+let mensajesActuales = [];
+const modalVisor = document.getElementById('modal-visor-imagen');
+const visorImgFull = document.getElementById('visor-img-full');
+const visorTitulo = document.getElementById('visor-titulo');
+const btnCerrarVisor = document.getElementById('btn-cerrar-visor');
+const btnCerrarVisorBottom = document.getElementById('btn-cerrar-visor-bottom');
+const btnAbrirNuevaPestana = document.getElementById('btn-abrir-nueva-pestana');
+
+window.abrirVisorImagen = function(id) {
+  const m = mensajesActuales.find(msg => msg.id === id);
+  if (!m || !m.imagen_url) return;
+
+  visorImgFull.src = m.imagen_url;
+  visorTitulo.textContent = `🖼️ Foto de ${m.autor || 'Mensaje'}`;
+  btnAbrirNuevaPestana.href = m.imagen_url;
+  modalVisor.classList.remove('hidden');
+};
+
+function cerrarVisorImagen() {
+  modalVisor.classList.add('hidden');
+  visorImgFull.src = '';
+}
+
+btnCerrarVisor.addEventListener('click', cerrarVisorImagen);
+btnCerrarVisorBottom.addEventListener('click', cerrarVisorImagen);
+modalVisor.addEventListener('click', (e) => {
+  if (e.target === modalVisor) cerrarVisorImagen();
+});
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    if (modalVisor && !modalVisor.classList.contains('hidden')) cerrarVisorImagen();
+    if (modalQr && !modalQr.classList.contains('hidden')) cerrarModalQr();
+    if (modal && !modal.classList.contains('hidden')) cerrarModalPersonalizar();
+  }
+});
+
+// ====================================================================
 // CARGAR MENSAJES (GET /mensajes)
 // ====================================================================
 async function cargarMensajes() {
@@ -363,6 +403,7 @@ async function cargarMensajes() {
 }
 
 function renderizarMensajes(mensajes) {
+  mensajesActuales = mensajes;
   contadorPill.textContent = `${mensajes.length} ${mensajes.length === 1 ? 'mensaje' : 'mensajes'}`;
 
   if (mensajes.length === 0) {
@@ -387,8 +428,9 @@ function renderizarMensajes(mensajes) {
     const isLiked = likedList.includes(m.id);
 
     const imagenHTML = m.imagen_url ? `
-      <div class="mensaje-img-wrapper">
+      <div class="mensaje-img-wrapper" title="🔍 Clic para ver en tamaño completo" onclick="abrirVisorImagen(${m.id})">
         <img src="${m.imagen_url}" alt="Imagen de ${escaparHTML(m.autor)}" class="mensaje-img" loading="lazy">
+        <div class="img-zoom-badge">🔍 Ver completa</div>
       </div>
     ` : '';
 

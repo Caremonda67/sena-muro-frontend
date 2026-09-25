@@ -241,6 +241,25 @@
     </div>
   </div>
 
+  <!-- Modal 3: Visor de Imagen Completa (Lightbox) -->
+  <div id="modal-visor-imagen" class="modal-overlay hidden" role="dialog" aria-modal="true" aria-label="Visor de imagen">
+    <div class="modal-card visor-modal-card">
+      <div class="modal-header">
+        <h3 id="visor-titulo">🖼️ Imagen del Mensaje</h3>
+        <button id="btn-cerrar-visor" class="btn-close" aria-label="Cerrar visor">&times;</button>
+      </div>
+      <div class="visor-imagen-container">
+        <img id="visor-img-full" src="" alt="Imagen ampliada" class="visor-img-full">
+      </div>
+      <div class="modal-actions">
+        <a id="btn-abrir-nueva-pestana" href="#" target="_blank" rel="noopener noreferrer" class="btn-secondary" style="text-decoration:none; display:inline-flex; align-items:center; gap:0.4rem;">
+          ↗️ Ver tamaño original
+        </a>
+        <button type="button" id="btn-cerrar-visor-bottom" class="btn-primary">Cerrar</button>
+      </div>
+    </div>
+  </div>
+
   <script src="script.js"></script>
 </body>
 </html>
