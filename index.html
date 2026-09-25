@@ -52,7 +52,7 @@
 
       <form id="form-mensaje">
         <div class="form-group">
-          <label for="autor">Tu Nombre o Apodo:</label>
+          <label for="autor">Tu nombre o apodo:</label>
           <input 
             type="text" 
             id="autor" 
@@ -65,7 +65,7 @@
         </div>
 
         <div class="form-group">
-          <label for="mensaje">Tu Mensaje:</label>
+          <label for="mensaje">Tu mensaje:</label>
           <textarea 
             id="mensaje" 
             name="mensaje" 
@@ -82,9 +82,9 @@
         <!-- Sección de Imagen o GIF (Opcional) -->
         <div class="form-group image-input-group">
           <div class="image-label-row">
-            <label for="imagen-url">🖼️ Añadir Imagen o GIF (Opcional):</label>
+            <label for="imagen-url">🖼️ Añadir imagen o GIF (opcional):</label>
             <label class="btn-file-upload" title="Subir foto desde tu dispositivo">
-              📁 Subir Foto
+              📁 Subir foto
               <input type="file" id="input-archivo-imagen" accept="image/*" class="hidden">
             </label>
           </div>
@@ -98,12 +98,12 @@
           <!-- Vista previa de la imagen seleccionada -->
           <div id="preview-container" class="image-preview-box hidden">
             <img id="img-preview" src="" alt="Vista previa">
-            <button type="button" id="btn-remover-img" class="btn-remove-img" title="Quitar imagen">✕</button>
+            <button type="button" id="btn-remover-img" class="btn-remove-img" title="Quitar imagen" aria-label="Quitar imagen seleccionada">✕</button>
           </div>
         </div>
 
         <button type="submit" id="btn-enviar" class="btn-primary">
-          <span class="btn-text">Publicar en el Muro 🚀</span>
+          <span class="btn-text">Publicar en el muro 🚀</span>
           <span class="btn-spinner hidden">Enviando...</span>
         </button>
       </form>
@@ -113,7 +113,7 @@
     <section class="wall-section">
       <div class="wall-header">
         <div class="wall-title-group">
-          <h2>📌 Mensajes de la Clase</h2>
+          <h2>📌 Mensajes de la clase</h2>
           <span id="contador-mensajes" class="pill-counter">0 mensajes</span>
         </div>
         <button id="btn-recargar" class="btn-secondary" title="Actualizar lista de mensajes">
@@ -131,17 +131,17 @@
   </main>
 
   <!-- Modal 1: Personalización (Temas, Emojis, Título) -->
-  <div id="modal-personalizar" class="modal-overlay hidden">
+  <div id="modal-personalizar" class="modal-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="modal-personalizar-titulo">
     <div class="modal-card">
       <div class="modal-header">
-        <h3>🎨 Personaliza tu Muro Web</h3>
-        <button id="btn-cerrar-modal" class="btn-close" aria-label="Cerrar modal">&times;</button>
+        <h3 id="modal-personalizar-titulo">🎨 Personaliza tu muro web</h3>
+        <button id="btn-cerrar-modal" class="btn-close" aria-label="Cerrar ventana de personalización">&times;</button>
       </div>
       <p class="modal-subtitle">Cambia el estilo de tu página. Se guardará en la base de datos para que todos lo vean así.</p>
 
       <form id="form-personalizar">
         <div class="form-group">
-          <label for="input-nombre-muro">Nombre de tu Muro:</label>
+          <label for="input-nombre-muro">Nombre de tu muro:</label>
           <input 
             type="text" 
             id="input-nombre-muro" 
@@ -152,7 +152,7 @@
         </div>
 
         <div class="form-group">
-          <label>Elige tu Emoji Insignia:</label>
+          <label>Elige tu emoji insignia:</label>
           <div class="emoji-selector" id="emoji-selector">
             <button type="button" class="emoji-btn active" data-emoji="💬">💬</button>
             <button type="button" class="emoji-btn" data-emoji="🚀">🚀</button>
@@ -168,7 +168,7 @@
         </div>
 
         <div class="form-group">
-          <label>Paleta de Color / Tema:</label>
+          <label>Paleta de colores / tema:</label>
           <div class="theme-selector" id="theme-selector">
             <button type="button" class="theme-card active" data-theme="ocean">
               <span class="theme-preview theme-ocean"></span>
@@ -198,7 +198,7 @@
         </div>
 
         <div class="form-group">
-          <label for="input-desc-muro">Lema o Frase de Bienvenida:</label>
+          <label for="input-desc-muro">Lema o frase de bienvenida:</label>
           <input 
             type="text" 
             id="input-desc-muro" 
@@ -210,7 +210,7 @@
         <div class="modal-actions">
           <button type="button" id="btn-cancelar-modal" class="btn-secondary">Cancelar</button>
           <button type="submit" id="btn-guardar-personalizar" class="btn-primary">
-            Guardar y Aplicar ✨
+            Guardar y aplicar ✨
           </button>
         </div>
       </form>
@@ -218,11 +218,11 @@
   </div>
 
   <!-- Modal 2: Código QR para el Celular -->
-  <div id="modal-qr" class="modal-overlay hidden">
+  <div id="modal-qr" class="modal-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="modal-qr-titulo">
     <div class="modal-card qr-modal-card">
       <div class="modal-header">
-        <h3>📱 Abre tu Muro en el Celular</h3>
-        <button id="btn-cerrar-qr" class="btn-close" aria-label="Cerrar modal">&times;</button>
+        <h3 id="modal-qr-titulo">📱 Abre tu muro en el celular</h3>
+        <button id="btn-cerrar-qr" class="btn-close" aria-label="Cerrar ventana de código QR">&times;</button>
       </div>
       <p class="modal-subtitle">Apunta la cámara de tu celular a este código para abrir tu sitio web en vivo.</p>
 
@@ -232,7 +232,7 @@
 
       <div class="qr-url-box">
         <span id="qr-url-text" class="qr-url-text"></span>
-        <button id="btn-copiar-link" class="btn-secondary">📋 Copiar Enlace</button>
+        <button id="btn-copiar-link" class="btn-secondary">📋 Copiar enlace</button>
       </div>
 
       <div class="modal-actions">
@@ -242,18 +242,18 @@
   </div>
 
   <!-- Modal 3: Visor de Imagen Completa (Lightbox) -->
-  <div id="modal-visor-imagen" class="modal-overlay hidden" role="dialog" aria-modal="true" aria-label="Visor de imagen">
+  <div id="modal-visor-imagen" class="modal-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="visor-titulo">
     <div class="modal-card visor-modal-card">
       <div class="modal-header">
-        <h3 id="visor-titulo">🖼️ Imagen del Mensaje</h3>
-        <button id="btn-cerrar-visor" class="btn-close" aria-label="Cerrar visor">&times;</button>
+        <h3 id="visor-titulo">🖼️ Imagen adjunta</h3>
+        <button id="btn-cerrar-visor" class="btn-close" aria-label="Cerrar visor de imagen">&times;</button>
       </div>
       <div class="visor-imagen-container">
         <img id="visor-img-full" src="" alt="Imagen ampliada" class="visor-img-full">
       </div>
       <div class="modal-actions">
-        <a id="btn-abrir-nueva-pestana" href="#" target="_blank" rel="noopener noreferrer" class="btn-secondary" style="text-decoration:none; display:inline-flex; align-items:center; gap:0.4rem;">
-          ↗️ Ver tamaño original
+        <a id="btn-abrir-nueva-pestana" href="#" target="_blank" rel="noopener noreferrer" class="btn-secondary" title="Abrir imagen en una pestaña nueva" style="text-decoration:none; display:inline-flex; align-items:center; gap:0.4rem;">
+          ↗️ Ver en tamaño original
         </a>
         <button type="button" id="btn-cerrar-visor-bottom" class="btn-primary">Cerrar</button>
       </div>

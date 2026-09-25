@@ -332,7 +332,7 @@ btnCopiarLink.addEventListener('click', () => {
   navigator.clipboard.writeText(window.location.href).then(() => {
     btnCopiarLink.textContent = '✅ ¡Copiado!';
     setTimeout(() => {
-      btnCopiarLink.textContent = '📋 Copiar Enlace';
+      btnCopiarLink.textContent = '📋 Copiar enlace';
     }, 2000);
   });
 });
@@ -353,8 +353,37 @@ window.abrirVisorImagen = function(id) {
   if (!m || !m.imagen_url) return;
 
   visorImgFull.src = m.imagen_url;
-  visorTitulo.textContent = `🖼️ Foto de ${m.autor || 'Mensaje'}`;
+  visorTitulo.textContent = m.autor ? `🖼️ Foto de ${m.autor}` : '🖼️ Foto adjunta';
   btnAbrirNuevaPestana.href = m.imagen_url;
+
+  // Si la imagen es Base64 (subida local), evitar bloqueo de seguridad de Chromium al abrir en nueva pestaña
+  btnAbrirNuevaPestana.onclick = (e) => {
+    if (m.imagen_url.startsWith('data:')) {
+      e.preventDefault();
+      const popup = window.open('');
+      if (popup) {
+        popup.document.write(`
+          <!DOCTYPE html>
+          <html lang="es">
+            <head>
+              <meta charset="UTF-8">
+              <meta name="viewport" content="width=device-width, initial-scale=1.0">
+              <title>Imagen en tamaño original - SENA</title>
+              <style>
+                body { margin: 0; background: #0f172a; display: flex; align-items: center; justify-content: center; min-height: 100vh; padding: 1rem; box-sizing: border-box; }
+                img { max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+              </style>
+            </head>
+            <body>
+              <img src="${m.imagen_url}" alt="Imagen en tamaño original">
+            </body>
+          </html>
+        `);
+        popup.document.close();
+      }
+    }
+  };
+
   modalVisor.classList.remove('hidden');
 };
 
