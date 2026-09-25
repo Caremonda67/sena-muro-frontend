@@ -3,7 +3,7 @@
 // ====================================================================
 
 const DEFAULT_BACKEND_URL = "http://localhost:3000";
-let backendUrl = localStorage.getItem('sena_backend_url') || https://sena-muro-backend.onrender.com/;
+let backendUrl = localStorage.getItem('https://sena-muro-backend.onrender.com') || https://sena-muro-backend.onrender.com/
 
 // Elementos de la barra superior
 const statusDot = document.getElementById('status-dot');
