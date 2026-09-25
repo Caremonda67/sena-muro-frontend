@@ -2,7 +2,14 @@
 // 🔌 CONFIGURACIÓN DE CONEXIÓN
 // ====================================================================
 
-const DEFAULT_BACKEND_URL = "https://sena-muro-backend.onrender.com/";
+const DEFAULT_BACKEND_URL = "https://sena-muro-backend.onrender.com";
+let backendUrl = (localStorage.getItem('sena_backend_url') || DEFAULT_BACKEND_URL).replace(/\/+$/, '');
+
+// Si la web corre en HTTPS (Vercel) y localStorage tenía localhost, auto-migrar al backend en producción
+if (window.location.protocol === 'https:' && backendUrl.startsWith('http://localhost')) {
+  backendUrl = DEFAULT_BACKEND_URL;
+  localStorage.setItem('sena_backend_url', backendUrl);
+}
 
 // Elementos de la barra superior
 const statusDot = document.getElementById('status-dot');
