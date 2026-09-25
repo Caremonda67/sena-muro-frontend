@@ -14,8 +14,6 @@ if (window.location.protocol === 'https:' && backendUrl.startsWith('http://local
 // Elementos de la barra superior
 const statusDot = document.getElementById('status-dot');
 const statusText = document.getElementById('status-text');
-const backendInput = document.getElementById('backend-url-input');
-const btnActualizarUrl = document.getElementById('btn-actualizar-url');
 const btnAbrirPersonalizar = document.getElementById('btn-abrir-personalizar');
 const btnAbrirQr = document.getElementById('btn-abrir-qr');
 
@@ -67,8 +65,7 @@ let emojiSeleccionado = '💬';
 let temaSeleccionado = 'ocean';
 let imagenSeleccionadaBase64 = null;
 
-// Inicializar el input con la URL actual
-backendInput.value = backendUrl;
+
 
 // Colores para avatares
 const AVATAR_COLORS = [
@@ -556,21 +553,7 @@ if (autorGuardado) {
   inputAutor.value = autorGuardado;
 }
 
-// Actualizar URL del backend manualmente
-btnActualizarUrl.addEventListener('click', () => {
-  let nuevaUrl = backendInput.value.trim();
-  if (!nuevaUrl) return;
 
-  if (nuevaUrl.endsWith('/')) {
-    nuevaUrl = nuevaUrl.slice(0, -1);
-  }
-
-  backendUrl = nuevaUrl;
-  localStorage.setItem('sena_backend_url', backendUrl);
-  verificarConexion();
-  cargarConfiguracion();
-  cargarMensajes();
-});
 
 btnRecargar.addEventListener('click', () => {
   cargarMensajes();
