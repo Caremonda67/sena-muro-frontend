@@ -2,7 +2,6 @@
 // 🔌 CONFIGURACIÓN DE CONEXIÓN
 // ====================================================================
 
-const DEFAULT_BACKEND_URL = "http://localhost:3000";
 const DEFAULT_BACKEND_URL = "https://sena-muro-backend.onrender.com/";
 
 // Elementos de la barra superior
